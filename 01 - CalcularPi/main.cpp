@@ -3,25 +3,34 @@
 
 using namespace std;
 
-int main() {
-   
+double calcularpi() {
     double pi = 0.0;
+    double resultado = 0.0;
+    int denominador = 1;
     int i = 0;
-	double resultadoa = 0.0;
 
-    for (i = 0; i < 1000000; i++) {
-
-        resultadoa = 1.0 / (2 * i + 1);
-
+    while (true) {
+        resultado = 1.0 / denominador;
         if (i % 2 == 0) {
-            pi += resultadoa;
+            pi += resultado;
         } else {
-            pi -= resultadoa;
-        }   
+            pi -= resultado;
+        }
+
+        denominador += 2;
+        i++;
+
+        string pistring = to_string(pi * 4);
+        if (pistring.substr(0, 9) == "3.141592") {
+            break;
+        }
     }
 
-	pi = pi * 4;
+    return pi * 4;
+}
 
+int main() {
+    double pi = calcularpi();
     cout << setprecision(7) << pi << endl;
 
     return 0;
